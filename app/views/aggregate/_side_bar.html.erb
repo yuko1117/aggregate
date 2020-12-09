@@ -1,8 +1,21 @@
 <div class="side-bar-header">
-  <div class="header-name">
-    <a href="#">Tom</a>
-  </div>
+   <% if user_signed_in? %>
+       <div class="header-name">
+       <%= link_to current_user.name, "#", class: "header-name" %>
+      </div>
+      <div class="header-btn-logout">
+       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %> 
+       </div>
+   <% else %>
+       <div class="header-btn-login">
+       <%= link_to 'ログイン', new_user_session_path, class: "login" %>
+       </div>
+       <div class="header-btn-sign-ups">
+       <%= link_to '新規登録', new_user_registration_path, class: "sign-ups" %>
+       </div>
+   <% end %>
 </div>
+
 <div class="item-room">
   <a href="#">商品展開報告</a>
 </div>
@@ -10,6 +23,6 @@
   <a href="#">売場変更報告</a>
 </div>
 <div class="sales-room">
-  <a href="#">売上報告</a>
+  <a href="#">　売上報告　</a>
 </div>
 
