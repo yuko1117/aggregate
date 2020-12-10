@@ -10,4 +10,13 @@ class Item < ApplicationRecord
     validates :image
     validates :category_id, numericality: { other_than: 1 }
   end
+
+  def self.search(search)
+    if search != ""
+      Item.where('text LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
 end

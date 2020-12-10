@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   def index
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -15,9 +16,17 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.search(params[:keyword])
+  end
+
   private
 
   def item_params
     params.require(:item).permit(:title, :explanation, :category_id, :image).merge(user_id: current_user.id)
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :area)
   end
 end
