@@ -34,7 +34,8 @@ ActiveRecord::Schema.define(version: 2020_12_09_075620) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "title", null: false
+    t.integer "category_id"
     t.text "explanation", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_075620) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "affiliation", null: false
+    t.string "area", null: false
     t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
